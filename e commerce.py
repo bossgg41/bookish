@@ -1,0 +1,100 @@
+import mysql.connector
+obj=mysql.connector.connect(host="localhost", user="root", password="pranay898", database="pranay")
+curobj=obj.cursor
+def category():
+    print("***********Catagories Available are:**********\n")
+    a="select distinct CATEGORY from main_table"
+    curobj.execute(a)
+    fetch=curobj.fetchAll()
+    for i in fetch:
+        print(i[o])
+    print("\n")
+    inpCategory=input("Enter your category: ")
+    print("\n")
+    print("We have the following ",inpCategory,":")
+    print("\n")
+    b="select PRODUCT_NAME,PRICE from main_table where CATEGORY='{}'".format(inpCategory)
+    curobj.execute(b)
+    fetch=curobj.fetchAll()
+    for i in fetchi:
+        print(i[o],"-------------","PRICE:",i[1])
+    print("---------------X--------------")
+
+def product():
+    a="select PRODUCT_NAME,PRICE from main_table"
+    curobj.execute(a)
+    fetch-curobj.fetchall()
+    obj.commit()
+    for i in fetch:
+        print(i[o],"*************","PRICE: ",i[1])
+    print("---------------X--------------")
+
+
+def brand():
+    print("**********Brands available are:***********\n")
+    a="select distinct BRAND NAME from main_table"
+    curobj.execute(a)
+    fetch=curobj.fetchall()
+    for i in fetch:
+        print(i[0])
+    print("\n")
+    inpBrand=input("What brand are you looking for?:")
+    print("\n")
+    print("We have the following available products from ",inpBrand,":")
+    print("\n")
+    b="select PRODUCT_NAME,PRICE from main_table where BRAND NAME='{}'".format(inpBrand)
+    curobj.execute(b)
+    fetchi=curobj.fetchall
+    for i in fetchi:
+        print(i[o],"*********","PRICE: ",i[1])
+    print("---------------X--------------")
+
+
+def order():
+    inpContact-int(input("Enter your mobile number"))
+    inpOrder=input("What do you want to order?")
+    qty="select QUANTITY from main_table where PRODUCT_NAME='{}'".format(inpOrder)
+    curobj.execute(qty)
+    fetch=curobj.fetchall()
+    
+    if fetch==0:
+        print("OUT OF STOCK!!!!")
+    else:
+        product_id="select PRODUCT_ID from main_table where PRODUCT_NAME='{}'".format(inpOrder)
+        curobj.execute(product_id)
+        fetch=curobj.fetchall()
+        #For subtracting from main_table:
+        a="update main_table set QUANTITY=QUANTITY+{} where PRODUCT_NAME='{}'".format(i,inpOrder)
+        curobj.execute(a)
+        obj.commit()
+
+#For adding details into order table
+e="insert into order_table(PRODUCT_ID,PRODUCT_NAME, CONTACT_DETAILS_OF_CUSTOMER, DATE_OF_DISPATCH) values('{}','{}','{}')".format(fetchi[0][0]inpOrder, inpContact, 'curdate()')
+curobj.execute()
+obj.commit()
+print("Your order has been placed")
+
+while True:
+print("WELCOME TO E-SHOP :)\n")
+print("Press 1 if you are looking for a category.")
+print("Press 2 if you are looking for a product.")
+print("Press 3 if you are looking for a brand.")
+print("Press 4 if you want to place an order. \n")
+inpint=int(input("Enter your number: "))
+print("\n")
+if inpint==1:
+    category()
+elif inpint==2:
+    product()
+
+elif inpint==3:
+    brand()
+
+elif inpint==4:
+    order()
+else:
+    print("ERROR!!!")
+    print("Check your number.")
+mber.")
+ print("Check your number.")
+
